@@ -1,14 +1,6 @@
 <template>
 	<div id="index">
-		<!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-		<!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-		<!-- <home></home> -->
-		<!-- <router-link v-bind:to="url">
-			<el-button v-on:click="history()" type="info" icon="el-icon-time" circle style="position: absolute; top: 25px; right: 300px;z-index: 4;">
-			</el-button>
-		</router-link> -->
-		<el-button @click="search()" type="info" icon="el-icon-d-arrow-left" circle style="position: absolute; top: 25px; right: 0px;z-index: 4;">
-		</el-button>
+
 
 		<el-drawer title="我是标题" :visible.sync="drawer" :with-header="false" size="300px" @click="search()">
 			<a v-bind:href="tourl('https://zh.wikipedia.org/wiki/')" style="position: absolute; top: 70px;right: 20px;" target=_blank><img src="../../public/wiki.png" /></a>
@@ -21,10 +13,6 @@
 			</el-button>
 		</el-drawer>
 
-		<!-- <router-link v-bind:to="urlvue">
-			<el-button v-on:click="getUrl()" type="info" icon="el-icon-user" circle style="position: absolute; top: 25px; right: 200px;z-index: 4;">
-			</el-button>
-		</router-link> -->
 		<el-dropdown style="position: absolute; top: 25px; right: 200px;z-index: 4;">
 			<span class="el-dropdown-link">
 				<router-link v-bind:to="urlvue">
@@ -51,7 +39,6 @@
 </template>
 
 <script>
-	/* import login from './login.vue' */
 	import pipe from '../pipe.js'
 	import {
 		mapMutations
@@ -72,44 +59,14 @@
 				val: ""
 			};
 		},
-		/* mounted: function() {
-			pipe.$on('getUrl', (data) => {
-				this.url = data
-			})
-		}, */
-		/* methods:{
-			getUrl(){
-				pipe.$on('getUrl', (data) => {
-					this.url = data
-				})
-			}
-		} */
-		/* created: function() {
-			axios.get(this.url + 'test')
-				.then(response => {
-					console.log(response.data);
-				});
-		}, */
-		/* computed: {
-			url: function(){
-				var url;
-				axios.get('http://192.168.43.17:7070/querySign')
-					.then(response => {
-						if (response.data === 1) {
-							url = '/home';
-							this.$router.push({
-								path: '/home'
-							});
-						}
-					});
-					return url;
-			}
-		}, */
 		computed: {
 			//jwt传回的token
 			token() {
 				return this.$store.state.token
 			},
+      value() {
+        return this.$store.state.val
+      },
 			
 			//通过token是否为空来决定按钮状态
 			disabled() {
@@ -121,7 +78,7 @@
 				'change', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
 			]),
 			tourl(url) {
-				return url + this.val;
+				return url + this.value;
 			},
 			search() {
 				this.drawer = true;

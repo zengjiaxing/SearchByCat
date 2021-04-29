@@ -1,17 +1,20 @@
 <template>
 	<div id="app">
-		<index></index>
+		<sign></sign>
 	</div>
 </template>
 
 <script>
 	import index from './components/index.vue'
 	import home from './components/home.vue'
+	import sign from './components/Sign.vue'
+
 	export default {
 		name: 'App',
 		components: {
 			index,
-			home
+			home,
+      sign
 		}
 	}
 </script>

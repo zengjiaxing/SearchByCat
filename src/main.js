@@ -24,8 +24,12 @@ const store = new Vuex.Store({
 	permission: [],
 	levelOne: false,
 	levelTwo: false,
+	val: ""
   },
   mutations: {
+setVal (state,val) {
+state.val = val
+	},
     change (state,token) {
       state.token = token
     },
